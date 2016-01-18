@@ -1,8 +1,8 @@
 /*global Backbone, jQuery, _, ENTER_KEY, ESC_KEY */
-var app = app || {};
+var app = app || {}; // 如果对象没有创建 则创建对象一次 
 
 (function($) {
-    'use strict';
+    'use strict'; //严格模式
 
     // Todo Item View
     // --------------
