@@ -24,10 +24,10 @@
 			<p>Written by <a href="https://github.com/addyosmani">Addy Osmani</a></p>
 			<p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
 		</footer>
-		<script type="text/template" id="item-template">
+		<script type="text/template" id="item-template">  // 制定标志   这下面的可通过JS修改 
 			<div class="view">
 				<input class="toggle" type="checkbox" <%= completed ? 'checked' : '' %>>
-				<label><%- title %></label>
+				<label><%- title %></label>   // 为什么用这种方式 就能显示了？  
 				<button class="destroy"></button>
 			</div>
 			<input class="edit" value="<%- title %>">
