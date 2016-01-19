@@ -12,7 +12,7 @@ var app = app || {};
 
         // Instead of generating a new element, bind to the existing skeleton of
         // the App already present in the HTML.
-        el: '.todoapp',
+        el: '.todoapp', // 绑定 indew.html 中的 大框 class：todoapp   el: '.todoapp'
 
         // Our template for the line of statistics at the bottom of the app.  状态统计用
         statsTemplate: _.template($('#stats-template').html()),
@@ -24,15 +24,17 @@ var app = app || {};
             'click .toggle-all': 'toggleAllComplete'
         },
 
-        // At initialization we bind to the relevant events on the `Todos`
+        // At initialization we bind to the relevant events on the `Todos`    listenTo 绑定
         // collection, when items are added or changed. Kick things off by
         // loading any preexisting todos that might be saved in *localStorage*.
         initialize: function() {
-            this.allCheckbox = this.$('.toggle-all')[0];
+            this.allCheckbox = this.$('.toggle-all')[0]; //this.xxxxxx 和 this.$xxxxxxxx 的区别
             this.$input = this.$('.new-todo');
             this.$footer = this.$('.footer');
             this.$main = this.$('.main');
             this.$list = $('.todo-list');
+
+            // app.todos 在 todos.js 中定义 是个 collection。 app.todos = new Todos();
 
             this.listenTo(app.todos, 'add', this.addOne);
             this.listenTo(app.todos, 'reset', this.addAll);
@@ -77,17 +79,17 @@ var app = app || {};
 
         // Add a single todo item to the list by creating a view for it, and
         // appending its element to the `<ul>`.
-        addOne: function(todo) {
-            var view = new app.TodoView({
-                model: todo
+        addOne: function(todo) { // 这个todo 如何理解？  传入app.todos?   function的第一个参数就是model, function (model, value) 所以todo 代表app.todos的model
+            var view = new app.TodoView({ // 调用todo-view.js 
+                model: todo //这个model: todo 如何理解？  继承 app.todos 的model?
             });
-            this.$list.append(view.render().el);
+            this.$list.append(view.render().el); // 这个负责页面的实际改变
         },
 
         // Add all items in the **Todos** collection at once.
         addAll: function() {
-            this.$list.html('');
-            app.todos.each(this.addOne, this);
+            this.$list.html(''); // 作用？ 输出空格？
+            app.todos.each(this.addOne, this); //each 为什么两个参数？ dash中是一个参数。
         },
 
         filterOne: function(todo) {
@@ -111,8 +113,8 @@ var app = app || {};
         // persisting it to *localStorage*.
         createOnEnter: function(e) {
             if (e.which === ENTER_KEY && this.$input.val().trim()) {
-                app.todos.create(this.newAttributes());
-                this.$input.val('');
+                app.todos.create(this.newAttributes()); // 添加model  
+                this.$input.val(''); //清空输入区
             }
         },
 

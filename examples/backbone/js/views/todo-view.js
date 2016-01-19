@@ -1,6 +1,6 @@
 /*global Backbone, jQuery, _, ENTER_KEY, ESC_KEY */
 var app = app || {}; // 如果对象没有创建 则创建对象一次 
-
+//单个model 的保存
 (function($) {
     'use strict'; //严格模式
 
@@ -48,11 +48,11 @@ var app = app || {}; // 如果对象没有创建 则创建对象一次
                 return;
             }
 
-            this.$el.html(this.template(this.model.toJSON())); //在页面插入 todo事项
+            this.$el.html(this.template(this.model.toJSON())); //在页面插入 todo事项   toJSON 返回 attributes
 
             this.$el.toggleClass('completed', this.model.get('completed')); //  toggleClass 后面值为1时添加class 否则删除
             this.toggleVisible();
-            this.$input = this.$('.edit'); //获取输入
+            this.$input = this.$('.edit'); //获取输入      $input = $('input') ?   <input ?>
             return this;
         },
 
@@ -79,6 +79,7 @@ var app = app || {}; // 如果对象没有创建 则创建对象一次
 
         // Close the `"editing"` mode, saving changes to the todo.
         close: function() {
+            //可以合并为 this.$input.val().trim()
             var value = this.$input.val();
             var trimmedValue = value.trim();
 

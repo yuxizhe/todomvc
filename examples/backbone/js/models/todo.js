@@ -11,7 +11,7 @@ var app = app || {};
     app.Todo = Backbone.Model.extend({
         // Default attributes for the todo
         // and ensure that each todo created has `title` and `completed` keys.
-        // 设置defaults 之后 可以保证每个都有这两个属性
+        // 设置defaults 之后 可以保证每个都有这两个属性       并不是class ,todo-view 里有通过判断这个添加 class 的语句  this.$el.toggleClass('completed', this.model.get('completed')); 
         defaults: {
             title: '',
             completed: false
